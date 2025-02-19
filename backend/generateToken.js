@@ -10,8 +10,8 @@ const generateToken = (res, id, username, role) => {
   // Gửi token dưới dạng cookie
   res.cookie("jwt", token, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production", // Chỉ dùng https trong production
-    sameSite: "strict",
+    secure: true,
+    sameSite: "None",
     maxAge: 24 * 60 * 60 * 1000,
   });
 
