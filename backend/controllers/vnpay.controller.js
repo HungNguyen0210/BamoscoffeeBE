@@ -33,7 +33,7 @@ export const vnpayReturn = async (req, res) => {
 
     const vnp_ResponseCode = vnp_Params["vnp_ResponseCode"];
     if (vnp_ResponseCode !== "00") {
-      return res.redirect("http://localhost:5173/order-fail");
+      return res.redirect("https://bamoscoffee.vercel.app/order-fail");
     }
 
     const orderId = new mongoose.Types.ObjectId(vnp_Params["vnp_TxnRef"]);
@@ -68,7 +68,9 @@ export const vnpayReturn = async (req, res) => {
       console.error("Lỗi khi gửi email xác nhận thanh toán:", emailError);
     }
 
-    res.redirect(`http://localhost:5173/order-success?orderId=${orderId}`);
+    res.redirect(
+      `https://bamoscoffee.vercel.app/order-success?orderId=${orderId}`
+    );
   } catch (error) {
     console.error("Lỗi khi xử lý VNPay return:", error);
     res.status(500).json({ message: "Lỗi server khi xử lý VNPay return." });
