@@ -15,7 +15,6 @@ import cors from "cors";
 import { fileURLToPath } from "url";
 import path from "path";
 import cookieParser from "cookie-parser";
-import session from "express-session";
 import dotenv from "dotenv";
 dotenv.config();
 
