@@ -21,6 +21,7 @@ dotenv.config();
 const app = express();
 app.use(cookieParser());
 const corsOptions = {
+  origin: "https://bamoscoffee.vercel.app/",
   credentials: true, // Cho phép gửi cookie, token
 };
 app.use(cors(corsOptions));

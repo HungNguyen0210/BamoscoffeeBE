@@ -2,7 +2,6 @@ import crypto from "crypto";
 import Order from "../models/order.model.js";
 import mongoose from "mongoose";
 import { sendInvoiceEmail } from "../services/emailService.js";
-import Product from "../models/product.model.js";
 
 export const vnpayReturn = async (req, res) => {
   try {
