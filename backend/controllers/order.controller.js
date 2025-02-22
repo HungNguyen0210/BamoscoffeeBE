@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { format } from "date-fns";
 import crypto from "crypto";
 import { sendInvoiceEmail } from "../services/emailService.js";
+import moment from "moment-timezone";
 
 export const getOrder = async (req, res) => {
   try {
@@ -147,11 +148,13 @@ export const createOrder = async (req, res) => {
 
       const ipAddr = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
-      const createDate = format(new Date(), "yyyyMMddHHmmss"); // Format: YYYYMMDDHHmmss
-      const expireDate = format(
-        new Date(new Date().getTime() + 15 * 60 * 1000),
-        "yyyyMMddHHmmss"
-      ); // 15 phút sau
+      const createDate = moment()
+        .tz("Asia/Ho_Chi_Minh")
+        .format("YYYYMMDDHHmmss");
+      const expireDate = moment()
+        .tz("Asia/Ho_Chi_Minh")
+        .add(15, "minutes")
+        .format("YYYYMMDDHHmmss");
       const orderId = newOrder._id.toString(); // ID đơn hàng làm mã giao dịch
       const amount = finalPrice * 100; // Đơn vị: VND (x100)
       const orderInfo = "string";
